@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour {
     public GameObject shapeContainer;
     public List<Sprite> sprites = new List<Sprite>();
 
+    public float YOS;
+    public float XOS;
+
     private List<GameObject> boardBlocks = new List<GameObject>();
     private List<GameObject> boardShapes = new List<GameObject>();
 
@@ -45,16 +48,16 @@ public class GameManager : MonoBehaviour {
         {
             case 0:
                 //L shape
-                spawnCoords = new Vector3(-1,0,0);
+                spawnCoords = new Vector3(-1 - XOS, 0, 0);
                 randomLetter(container, spawnCoords);
 
-                spawnCoords = new Vector3(-1, 1, 0);
+                spawnCoords = new Vector3(-1 - XOS, 1 + YOS, 0);
                 randomLetter(container, spawnCoords);
 
                 spawnCoords = new Vector3(0, 0, 0);
                 randomLetter(container, spawnCoords);
 
-                spawnCoords = new Vector3(1, 0, 0);
+                spawnCoords = new Vector3(1 + XOS, 0, 0);
                 randomLetter(container, spawnCoords);
 
                 break;
@@ -62,16 +65,16 @@ public class GameManager : MonoBehaviour {
 
             case 1:
                 //T shape
-                spawnCoords = new Vector3(-1, 0, 0);
+                spawnCoords = new Vector3(-1 - XOS, 0, 0);
                 randomLetter(container, spawnCoords);
 
                 spawnCoords = new Vector3(0, 0, 0);
                 randomLetter(container, spawnCoords);
 
-                spawnCoords = new Vector3(0, -1, 0);
+                spawnCoords = new Vector3(0, -1 - YOS, 0);
                 randomLetter(container, spawnCoords);
 
-                spawnCoords = new Vector3(1, 0, 0);
+                spawnCoords = new Vector3(1 + XOS, 0, 0);
                 randomLetter(container, spawnCoords);
 
                 break;
@@ -79,16 +82,16 @@ public class GameManager : MonoBehaviour {
 
             case 2:
                 //Line shape
-                spawnCoords = new Vector3(0, 2, 0);
+                spawnCoords = new Vector3(0, 2 + YOS*2, 0);
                 randomLetter(container, spawnCoords);
 
-                spawnCoords = new Vector3(0, 1, 0);
+                spawnCoords = new Vector3(0, 1 + YOS, 0);
                 randomLetter(container, spawnCoords);
 
                 spawnCoords = new Vector3(0, 0, 0);
                 randomLetter(container, spawnCoords);
 
-                spawnCoords = new Vector3(0, -1, 0);
+                spawnCoords = new Vector3(0, -1 - YOS, 0);
                 randomLetter(container, spawnCoords);
 
                 break;
@@ -96,16 +99,16 @@ public class GameManager : MonoBehaviour {
 
             case 3:
                 //S shape
-                spawnCoords = new Vector3(-1, 0, 0);
+                spawnCoords = new Vector3(-1 - XOS, 0, 0);
                 randomLetter(container, spawnCoords);
 
                 spawnCoords = new Vector3(0, 0, 0);
                 randomLetter(container, spawnCoords);
 
-                spawnCoords = new Vector3(0, 1, 0);
+                spawnCoords = new Vector3(0, 1 + YOS, 0);
                 randomLetter(container, spawnCoords);
 
-                spawnCoords = new Vector3(1, 1, 0);
+                spawnCoords = new Vector3(1 + XOS, 1 + YOS, 0);
                 randomLetter(container, spawnCoords);
 
                 break;
@@ -114,8 +117,8 @@ public class GameManager : MonoBehaviour {
             default:
                 break;
         }
+
         boardShapes.Add(container);
-        Debug.Log(boardShapes.Count);
     }
 
     public void delShapes()

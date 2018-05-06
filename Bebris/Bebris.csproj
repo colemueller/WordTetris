@@ -302,6 +302,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_SCRIPTS\GameManager.cs" />
+    <Compile Include="Assets\_SCRIPTS\shapeMover.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
