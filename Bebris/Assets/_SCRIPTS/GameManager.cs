@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour {
         
 	}
 
+    //Picks a random letter to put in the shape
     public void randomLetter(GameObject container, Vector3 spot)
     {
         GameObject newBlock = Instantiate(block, spot, Quaternion.identity);
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour {
         boardBlocks.Add(newBlock);
     }
 
+    //Creates a block formation using the randomLetter() method above
     public void blockFormation()
     {
 
@@ -117,7 +119,7 @@ public class GameManager : MonoBehaviour {
             default:
                 break;
         }
-
+        container.transform.position = new Vector3(-5f,5f,0f);
         boardShapes.Add(container);
     }
 
