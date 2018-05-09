@@ -30,6 +30,31 @@ public class GameManager : MonoBehaviour {
 
         StartCoroutine(Gravity());
 	}
+
+    private void Update()
+    {
+        //go left
+        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            MoveLeft();
+        }
+
+        //go right
+        if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            MoveRight();
+        }
+    }
+
+    private void MoveLeft()
+    {
+
+    }
+
+    private void MoveRight()
+    {
+
+    }
 	
 
     private IEnumerator Gravity()
@@ -63,6 +88,7 @@ public class GameManager : MonoBehaviour {
         int i = Random.Range(0, 26);
         spot.GetComponent<SpriteRenderer>().sprite = sprites[i];
         spot.GetComponent<letter>().isEmpty = false;
+        spot.GetComponent<letter>().liveLetter = true;
 
         switch (i)
         {

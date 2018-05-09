@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &2168360
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -287,6 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &58580169
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &113808744
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &168751735
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,6 +632,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &187023134
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &187023137
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -802,6 +808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &219602967
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,6 +896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &226847690
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,6 +984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &230794022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,6 +1028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &230794025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1106,6 +1116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &239672173
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1237,6 +1248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &319944406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,6 +1336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &384522499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,6 +1424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &384906270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,6 +1512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &394699309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,6 +1600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &415143608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,6 +1688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &450875897
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,6 +1838,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &515728404
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,15 +1864,15 @@ RectTransform:
   m_GameObject: {fileID: 515728404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.39944643, y: 0.39944643, z: 0.39944643}
   m_Children: []
   m_Father: {fileID: 1380634209}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 214.33, y: 56.49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &515728406
 MonoBehaviour:
@@ -1877,11 +1895,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 37
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 2
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1984,6 +2002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &539316373
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,6 +2090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &541310141
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,6 +2178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &577049604
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,6 +2266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &580736379
 GameObject:
   m_ObjectHideFlags: 0
@@ -2332,6 +2354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &586368545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,6 +2442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &664167981
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,6 +2530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &670877290
 GameObject:
   m_ObjectHideFlags: 0
@@ -2593,6 +2618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &682793202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2760,6 +2786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &705707764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2847,6 +2874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &713111016
 GameObject:
   m_ObjectHideFlags: 0
@@ -2892,10 +2920,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -3028,6 +3056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &767372023
 GameObject:
   m_ObjectHideFlags: 0
@@ -3162,7 +3191,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 86206918364bd774c88adf477b41fb7d, type: 3}
   - {fileID: 21300000, guid: ee4a093554a378a48a2207db9e0ae919, type: 3}
   - {fileID: 21300000, guid: 4ac8b8c818bfb6d4b814bdcef2acc24d, type: 3}
-  gravSpeed: 1
+  gravSpeed: 0.8
   Grid: {fileID: 2042397752}
 --- !u!4 &777603361
 Transform:
@@ -3264,6 +3293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &815184687
 GameObject:
   m_ObjectHideFlags: 0
@@ -3351,6 +3381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &925442912
 GameObject:
   m_ObjectHideFlags: 0
@@ -3438,6 +3469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &988311520
 GameObject:
   m_ObjectHideFlags: 0
@@ -3525,6 +3557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &992397666
 GameObject:
   m_ObjectHideFlags: 0
@@ -3568,6 +3601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &992397669
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3699,6 +3733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1037207831
 GameObject:
   m_ObjectHideFlags: 0
@@ -3866,6 +3901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1053335656
 GameObject:
   m_ObjectHideFlags: 0
@@ -3953,6 +3989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1092496002
 GameObject:
   m_ObjectHideFlags: 0
@@ -4040,6 +4077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1094415731
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,6 +4121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &1094415734
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4214,6 +4253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1114045908
 GameObject:
   m_ObjectHideFlags: 0
@@ -4301,6 +4341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1115937718
 GameObject:
   m_ObjectHideFlags: 0
@@ -4388,6 +4429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1129942383
 GameObject:
   m_ObjectHideFlags: 0
@@ -4555,6 +4597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1173188222
 GameObject:
   m_ObjectHideFlags: 0
@@ -4642,6 +4685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1219446155
 GameObject:
   m_ObjectHideFlags: 0
@@ -4729,6 +4773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1219578354
 GameObject:
   m_ObjectHideFlags: 0
@@ -5049,6 +5094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1283753834
 GameObject:
   m_ObjectHideFlags: 0
@@ -5136,6 +5182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1343777296
 GameObject:
   m_ObjectHideFlags: 0
@@ -5223,6 +5270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1380634208
 GameObject:
   m_ObjectHideFlags: 0
@@ -5257,7 +5305,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -47, y: -278.5}
+  m_AnchoredPosition: {x: -47, y: -503.2}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1380634210
@@ -5432,6 +5480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1448430779
 GameObject:
   m_ObjectHideFlags: 0
@@ -5519,6 +5568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1487411270
 GameObject:
   m_ObjectHideFlags: 0
@@ -5606,6 +5656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1494510647
 GameObject:
   m_ObjectHideFlags: 0
@@ -5773,6 +5824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1497181475
 GameObject:
   m_ObjectHideFlags: 0
@@ -5816,6 +5868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &1497181478
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5947,6 +6000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1534274602
 GameObject:
   m_ObjectHideFlags: 0
@@ -5990,6 +6044,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &1534274605
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6201,6 +6256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1563885060
 GameObject:
   m_ObjectHideFlags: 0
@@ -6288,6 +6344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1578075177
 GameObject:
   m_ObjectHideFlags: 0
@@ -6375,6 +6432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1587799143
 GameObject:
   m_ObjectHideFlags: 0
@@ -6462,6 +6520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1596380949
 GameObject:
   m_ObjectHideFlags: 0
@@ -6549,6 +6608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1625353960
 GameObject:
   m_ObjectHideFlags: 0
@@ -6636,6 +6696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1648175547
 GameObject:
   m_ObjectHideFlags: 0
@@ -6723,6 +6784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1684086257
 GameObject:
   m_ObjectHideFlags: 0
@@ -6810,6 +6872,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1687407953
 GameObject:
   m_ObjectHideFlags: 0
@@ -6897,6 +6960,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1709861688
 GameObject:
   m_ObjectHideFlags: 0
@@ -6984,6 +7048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1726631264
 GameObject:
   m_ObjectHideFlags: 0
@@ -7071,6 +7136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1750032210
 GameObject:
   m_ObjectHideFlags: 0
@@ -7238,6 +7304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1786069820
 GameObject:
   m_ObjectHideFlags: 0
@@ -7405,6 +7472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1796690014
 GameObject:
   m_ObjectHideFlags: 0
@@ -7448,6 +7516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &1796690017
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7579,6 +7648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1836610800
 GameObject:
   m_ObjectHideFlags: 0
@@ -7666,6 +7736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1837593145
 GameObject:
   m_ObjectHideFlags: 0
@@ -7709,6 +7780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &1837593148
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7840,6 +7912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1872400712
 GameObject:
   m_ObjectHideFlags: 0
@@ -7927,6 +8000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1883216590
 GameObject:
   m_ObjectHideFlags: 0
@@ -8014,6 +8088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1891263138
 GameObject:
   m_ObjectHideFlags: 0
@@ -8101,6 +8176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1894152428
 GameObject:
   m_ObjectHideFlags: 0
@@ -8188,6 +8264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1914339353
 GameObject:
   m_ObjectHideFlags: 0
@@ -8305,6 +8382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &1949576045
 GameObject:
   m_ObjectHideFlags: 0
@@ -8348,6 +8426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &1949576048
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8435,6 +8514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &1999830043
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8602,6 +8682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &2037823517
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8668,7 +8749,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2042397751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1537059569}
@@ -8773,6 +8854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!1 &2104624935
 GameObject:
   m_ObjectHideFlags: 0
@@ -8816,6 +8898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
 --- !u!212 &2104624938
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9101,3 +9184,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 1
   currentChar: 0
+  liveLetter: 0
