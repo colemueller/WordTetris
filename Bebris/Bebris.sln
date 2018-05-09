@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bebris", "Bebris.csproj", "{F1EAC910-1169-CBD6-6F8C-8F1785A92F0A}"
 EndProject
 Global

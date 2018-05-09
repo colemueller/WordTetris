@@ -48,12 +48,118 @@ public class GameManager : MonoBehaviour {
 
     private void MoveLeft()
     {
+        List <int> activeLetters = new List<int>();
+        bool validMove = true;
+
+        for (int i = 0; i <= 11; i++)
+        {
+            for (int j = 0; j < 7; j++)
+            {
+                //current space has a letter in it
+                if (rows[i].GetChild(j).GetComponent<letter>().liveLetter == true)
+                {
+                    //current row is NOT left column and there is an empty space to the left of current space
+                    if ((rows[i].GetChild(j - 1).GetComponent<letter>().isEmpty))
+                    {
+                        activeLetters.Add(i);
+                        activeLetters.Add(j);
+                    } else
+                    {
+                        //Check if destination is not empty because it has part of the shape in it
+                        if (rows[i].GetChild(j - 1).GetComponent<letter>().liveLetter)
+                        {
+                            activeLetters.Add(i);
+                            activeLetters.Add(j);
+                        }
+                        else
+                        {
+                            validMove = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (validMove)
+        {
+            int l = 1;
+            int row = 0;
+            int col = 0;
+            foreach (int s in activeLetters)
+            {
+                if (l % 2 == 0)
+                {
+                    col = s;
+
+                    SetLetter(rows[row].GetChild(col - 1), rows[row].GetChild(col).GetComponent<letter>().currentChar);
+                    ClearLetter(rows[row].GetChild(col));
+                }
+                else
+                {
+                    row = s;
+                }
+                l++;
+            }
+        }
 
     }
 
     private void MoveRight()
     {
+        List<int> activeLetters = new List<int>();
+        bool validMove = true;
 
+        for (int i = 11; i >= 0; i--)
+        {
+            for (int j = 6; j >= 0; j--)
+            {
+                //current space has a letter in it
+                if (rows[i].GetChild(j).GetComponent<letter>().liveLetter == true)
+                {
+                    //current row is NOT left column and there is an empty space to the left of current space
+                    if ((rows[i].GetChild(j + 1).GetComponent<letter>().isEmpty))
+                    {
+                        activeLetters.Add(i);
+                        activeLetters.Add(j);
+                    }
+                    else
+                    {
+                        //Check if destination is not empty because it has part of the shape in it
+                        if (rows[i].GetChild(j + 1).GetComponent<letter>().liveLetter)
+                        {
+                            activeLetters.Add(i);
+                            activeLetters.Add(j);
+                        }
+                        else
+                        {
+                            validMove = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (validMove)
+        {
+            int l = 1;
+            int row = 0;
+            int col = 0;
+            foreach (int s in activeLetters)
+            {
+                if (l % 2 == 0)
+                {
+                    col = s;
+
+                    SetLetter(rows[row].GetChild(col + 1), rows[row].GetChild(col).GetComponent<letter>().currentChar);
+                    ClearLetter(rows[row].GetChild(col));
+                }
+                else
+                {
+                    row = s;
+                }
+                l++;
+            }
+        }
     }
 	
 
@@ -74,6 +180,9 @@ public class GameManager : MonoBehaviour {
                         
                         SetLetter(rows[i - 1].GetChild(j), rows[i].GetChild(j).GetComponent<letter>().currentChar);
                         ClearLetter(rows[i].GetChild(j));
+                    } else
+                    {
+                        rows[i].GetChild(j).GetComponent<letter>().liveLetter = false;
                     }
                 }
             }
@@ -180,6 +289,7 @@ public class GameManager : MonoBehaviour {
     {
         spot.GetComponent<letter>().currentChar = letter;
         spot.GetComponent<letter>().isEmpty = false;
+        spot.GetComponent<letter>().liveLetter = true;
 
         switch (letter)
         {
