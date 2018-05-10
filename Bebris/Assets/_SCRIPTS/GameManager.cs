@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -18,9 +19,15 @@ public class GameManager : MonoBehaviour {
     private Transform[] rows;
 
     private int totalLetters;
+    public AudioSource oof;
+    public GameObject EndScreen;
+    private bool doEnd;
 
 	// Use this for initialization
 	void Start () {
+        Time.timeScale = 1;
+        doEnd = true;
+        EndScreen.SetActive(false);
 
         totalLetters = 0;
 
@@ -65,7 +72,11 @@ public class GameManager : MonoBehaviour {
                 //If it is not moving down anymore
                 if (rows[8].GetChild(j).GetComponent<letter>().liveLetter == false)
                 {
-                    EndGame();
+                    if (doEnd)
+                    {
+                        EndGame();
+                    }
+                    
                 }
             }
         }
@@ -236,8 +247,10 @@ public class GameManager : MonoBehaviour {
                         {
                             rows[i].GetChild(j).GetComponent<letter>().liveLetter = false;
                             cantMoveCount++;
+                            
                             if (cantMoveCount == totalLetters)
                             {
+                                
                                 movement = false;
                             }
                         }
@@ -247,6 +260,7 @@ public class GameManager : MonoBehaviour {
         }
         if (!movement)
         {
+            
             MakeShape();
             movement = true;
         }
@@ -516,8 +530,18 @@ public class GameManager : MonoBehaviour {
         
     }
 
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+
     public void EndGame()
     {
+        Time.timeScale = 0;
+        oof.Play();
+        EndScreen.SetActive(true);
         Debug.Log("Game Over, Man");
+        doEnd = false;
     }
 }
