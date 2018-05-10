@@ -17,8 +17,12 @@ public class GameManager : MonoBehaviour {
     public Transform Grid;
     private Transform[] rows;
 
+    private int totalLetters;
+
 	// Use this for initialization
 	void Start () {
+
+        totalLetters = 0;
 
         rows = new Transform[12];
 
@@ -29,6 +33,7 @@ public class GameManager : MonoBehaviour {
         }
 
         StartCoroutine(Gravity());
+        MakeShape();
 	}
 
     private void Update()
@@ -43,6 +48,26 @@ public class GameManager : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
             MoveRight();
+        }
+
+        //go down
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            MoveDown();
+        }
+
+        //End Game
+        for (int j = 0; j < 7; j++)
+        {
+            //If something is in the top row
+            if (rows[8].GetChild(j).GetComponent<letter>().isEmpty == false)
+            {
+                //If it is not moving down anymore
+                if (rows[8].GetChild(j).GetComponent<letter>().liveLetter == false)
+                {
+                    EndGame();
+                }
+            }
         }
     }
 
@@ -162,30 +187,68 @@ public class GameManager : MonoBehaviour {
         }
     }
 	
-
-    private IEnumerator Gravity()
+    private void MoveDown()
     {
-        yield return new WaitForSeconds(gravSpeed/2);
-
         for (int i = 0; i <= 11; i++)
         {
-            for(int j = 0; j < 7; j++)
+            for (int j = 0; j < 7; j++)
             {
                 //current space has a letter in it
                 if (rows[i].GetChild(j).GetComponent<letter>().isEmpty == false)
                 {
                     //current row is NOT bottom row and there is an empty space below current space
-                    if((i != 0) && (rows[i-1].GetChild(j).GetComponent<letter>().isEmpty))
+                    if ((i != 0) && (rows[i - 1].GetChild(j).GetComponent<letter>().isEmpty))
                     {
-                        
                         SetLetter(rows[i - 1].GetChild(j), rows[i].GetChild(j).GetComponent<letter>().currentChar);
                         ClearLetter(rows[i].GetChild(j));
-                    } else
+                    }
+                    else
                     {
                         rows[i].GetChild(j).GetComponent<letter>().liveLetter = false;
                     }
                 }
             }
+        }
+    }
+
+    private IEnumerator Gravity()
+    {
+        yield return new WaitForSeconds(gravSpeed/2);
+        bool movement = true;
+        int cantMoveCount = 0;
+
+        if (movement)
+        {
+            for (int i = 0; i <= 11; i++)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+                    //current space has a letter in it
+                    if (rows[i].GetChild(j).GetComponent<letter>().isEmpty == false)
+                    {
+                        //current row is NOT bottom row and there is an empty space below current space
+                        if ((i != 0) && (rows[i - 1].GetChild(j).GetComponent<letter>().isEmpty))
+                        {
+                            SetLetter(rows[i - 1].GetChild(j), rows[i].GetChild(j).GetComponent<letter>().currentChar);
+                            ClearLetter(rows[i].GetChild(j));
+                        }
+                        else
+                        {
+                            rows[i].GetChild(j).GetComponent<letter>().liveLetter = false;
+                            cantMoveCount++;
+                            if (cantMoveCount == totalLetters)
+                            {
+                                movement = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (!movement)
+        {
+            MakeShape();
+            movement = true;
         }
 
         StartCoroutine(Gravity());
@@ -283,6 +346,8 @@ public class GameManager : MonoBehaviour {
                 spot.GetComponent<letter>().currentChar = 'z';
                 break;
         }
+
+        totalLetters++;
     }
 
     public void SetLetter(Transform spot, char letter)
@@ -449,5 +514,10 @@ public class GameManager : MonoBehaviour {
     public void delShapes()
     {
         
+    }
+
+    public void EndGame()
+    {
+        Debug.Log("Game Over, Man");
     }
 }
