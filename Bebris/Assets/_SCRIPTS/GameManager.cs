@@ -464,9 +464,13 @@ public class GameManager : MonoBehaviour {
     public void MakeShape()
     {
 
+        SetRandomLetter(rows[10].GetChild(2));
+        SetRandomLetter(rows[10].GetChild(3));
+
+        /*
         int i = Random.Range(0,5);
         
-
+        
         switch (i)
         {
             case 0:
@@ -522,7 +526,7 @@ public class GameManager : MonoBehaviour {
             default:
                 break;
         }
-        
+        */
     }
 
     public void delShapes()
