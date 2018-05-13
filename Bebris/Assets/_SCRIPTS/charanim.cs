@@ -6,6 +6,8 @@ public class charanim : MonoBehaviour {
 
     public Sprite sprite_1;
     public Sprite sprite_2;
+    public Sprite sprite_3;
+    public Sprite sprite_4;
 
     private Sprite current;
     public float animTimer;

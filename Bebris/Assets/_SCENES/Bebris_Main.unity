@@ -2929,8 +2929,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 688279675}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.19, y: 1.49, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 6.28, y: 1.42, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 1782412947}
   m_Father: {fileID: 0}
@@ -8032,9 +8032,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 072e9b4aa2799cb4a95e163090b42256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite_1: {fileID: 21300000, guid: 0370426525cef264887f8ce3fd2e7714, type: 3}
-  sprite_2: {fileID: 21300000, guid: 2352e7b3c21692d4cb18e2ad2fb256b5, type: 3}
-  animTimer: 1
+  sprite_1: {fileID: 21300000, guid: 7d6c2089ea5b58445988bc61e7489bf9, type: 3}
+  sprite_2: {fileID: 21300002, guid: 7d6c2089ea5b58445988bc61e7489bf9, type: 3}
+  sprite_3: {fileID: 21300004, guid: 7d6c2089ea5b58445988bc61e7489bf9, type: 3}
+  sprite_4: {fileID: 21300006, guid: 7d6c2089ea5b58445988bc61e7489bf9, type: 3}
+  animTimer: 0.5
 --- !u!212 &1782412949
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8069,7 +8071,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0370426525cef264887f8ce3fd2e7714, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d6c2089ea5b58445988bc61e7489bf9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
