@@ -2651,6 +2651,70 @@ MonoBehaviour:
   isEmpty: 1
   currentChar: 0
   liveLetter: 0
+--- !u!1 &662486220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 662486222}
+  - component: {fileID: 662486221}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &662486221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 662486220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e155655448acb184ea334676471b3a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dictionaryList_a: {fileID: 4900000, guid: b7b9f10b9a5eece44a796364d45c610f, type: 3}
+  dictionaryList_b: {fileID: 4900000, guid: a92bf8f163e9be24ca0c7c66ace7e186, type: 3}
+  dictionaryList_c: {fileID: 4900000, guid: fafc9c0151f3a6a4398c29b15b45cf17, type: 3}
+  dictionaryList_d: {fileID: 4900000, guid: e45c00c80df0e1e4884256458de39f25, type: 3}
+  dictionaryList_e: {fileID: 4900000, guid: d4dab7f0f46fc6e4f95655895a2538c4, type: 3}
+  dictionaryList_f: {fileID: 4900000, guid: f209616d014f96646ac68dde8fdf8809, type: 3}
+  dictionaryList_g: {fileID: 4900000, guid: 643107a3696af7649b64e0424411b459, type: 3}
+  dictionaryList_h: {fileID: 4900000, guid: 0a502ec4824220744b2d60797b0915f7, type: 3}
+  dictionaryList_i: {fileID: 4900000, guid: 70366a9238e89f44da328bab2e12284b, type: 3}
+  dictionaryList_j: {fileID: 4900000, guid: 0c0b5a05fae7346449d1fb75bf3d70f8, type: 3}
+  dictionaryList_k: {fileID: 4900000, guid: 1fde41686405616469889cfec596ad92, type: 3}
+  dictionaryList_l: {fileID: 4900000, guid: f714bff027f6a5e4388ec1a4c4048432, type: 3}
+  dictionaryList_m: {fileID: 4900000, guid: 7a8eb6a17073f8449b74a0565dcbcd77, type: 3}
+  dictionaryList_n: {fileID: 4900000, guid: 20530d92bac7a2044aa2aaae1748377e, type: 3}
+  dictionaryList_o: {fileID: 4900000, guid: 2f71630fff471de43820e3e475b19da4, type: 3}
+  dictionaryList_p: {fileID: 4900000, guid: 84c735140672bcd43941e4181331950d, type: 3}
+  dictionaryList_q: {fileID: 4900000, guid: ed6c08cf366919e49b30925366bfb29a, type: 3}
+  dictionaryList_r: {fileID: 4900000, guid: 25b5968e2b4eda14a81cef1f2f06109f, type: 3}
+  dictionaryList_s: {fileID: 4900000, guid: 76ef4b4db38ea1b49b7badc4cee4a7f5, type: 3}
+  dictionaryList_t: {fileID: 4900000, guid: c6ab07fbe3bf119458282c8663280fb3, type: 3}
+  dictionaryList_u: {fileID: 4900000, guid: 3baf4fb1a2c423543b69170297f0609c, type: 3}
+  dictionaryList_v: {fileID: 4900000, guid: 73552b4dda492fe40b8fcb38a2170a61, type: 3}
+  dictionaryList_w: {fileID: 4900000, guid: a50a30860dcb4f848b1f1900a70b14e7, type: 3}
+  dictionaryList_y: {fileID: 4900000, guid: 45ed95268c0830b479005b3305ebdaa6, type: 3}
+--- !u!4 &662486222
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 662486220}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5290831, y: -0.6061451, z: 0.009765625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &664167981
 GameObject:
   m_ObjectHideFlags: 0
@@ -3430,6 +3494,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ee4a093554a378a48a2207db9e0ae919, type: 3}
   - {fileID: 21300000, guid: 4ac8b8c818bfb6d4b814bdcef2acc24d, type: 3}
   gravSpeed: 0.85
+  dictCheck: {fileID: 662486221}
   Grid: {fileID: 2042397752}
   oof: {fileID: 1543113468}
   EndScreen: {fileID: 271051510}

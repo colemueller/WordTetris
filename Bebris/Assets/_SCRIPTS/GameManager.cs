@@ -5,15 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-    //public GameObject block;
-    //public GameObject shapeContainer;
     public List<Sprite> sprites = new List<Sprite>();
     public float gravSpeed;
-    //public float YOS;
-    //public float XOS;
-
     private List<GameObject> boardBlocks = new List<GameObject>();
     private List<GameObject> boardShapes = new List<GameObject>();
+
+    public dictionaryReader dictCheck = new dictionaryReader();
 
     public Transform Grid;
     private Transform[] rows;
@@ -228,6 +225,9 @@ public class GameManager : MonoBehaviour {
         bool movement = true;
         int cantMoveCount = 0;
 
+        int checkRow = 0;
+        int checkCol = 0;
+
         if (movement)
         {
             for (int i = 0; i <= 11; i++)
@@ -250,7 +250,8 @@ public class GameManager : MonoBehaviour {
                             
                             if (cantMoveCount == totalLetters)
                             {
-                                
+                                checkRow = i;
+                                checkCol = j;
                                 movement = false;
                             }
                         }
@@ -260,7 +261,12 @@ public class GameManager : MonoBehaviour {
         }
         if (!movement)
         {
-            
+            //Check dictionary at desired row
+            List<string> rowContents = new List<string>();
+            rowContents = GetRow(checkRow);
+            dictCheck.CheckDictionary(rowContents);
+
+
             MakeShape();
             movement = true;
         }
@@ -268,10 +274,23 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(Gravity());
     }
 
+    public List<string> GetRow(int row)
+    {
+        List<string> rowContents = new List<string>();
+        for (int i = 0; i < 7; i++)
+        {
+            if (rows[row].GetChild(i).GetComponent<letter>().isEmpty == false) {
+                rowContents.Add(rows[row].GetChild(i).GetComponent<letter>().currentChar.ToString());
+            }
+        }
+
+        return rowContents;
+    }
+
     //Picks a random letter to put in the shape
     public void SetRandomLetter(Transform spot)
     {
-        int i = Random.Range(0, 26);
+        int i = Random.Range(0, 24);
         spot.GetComponent<SpriteRenderer>().sprite = sprites[i];
         spot.GetComponent<letter>().isEmpty = false;
         spot.GetComponent<letter>().liveLetter = true;
@@ -280,15 +299,12 @@ public class GameManager : MonoBehaviour {
         {
             case 0:
                 spot.GetComponent<letter>().currentChar = 'a';
-
                 break;
             case 1:
                 spot.GetComponent<letter>().currentChar = 'b';
-
                 break;
             case 2:
                 spot.GetComponent<letter>().currentChar = 'c';
- 
                 break;
             case 3:
                 spot.GetComponent<letter>().currentChar = 'd';
@@ -351,13 +367,7 @@ public class GameManager : MonoBehaviour {
                 spot.GetComponent<letter>().currentChar = 'w';
                 break;
             case 23:
-                spot.GetComponent<letter>().currentChar = 'x';
-                break;
-            case 24:
                 spot.GetComponent<letter>().currentChar = 'y';
-                break;
-            case 25:
-                spot.GetComponent<letter>().currentChar = 'z';
                 break;
         }
 
@@ -441,14 +451,8 @@ public class GameManager : MonoBehaviour {
             case 'w':
                 spot.GetComponent<SpriteRenderer>().sprite = sprites[22];
                 break;
-            case 'x':
-                spot.GetComponent<SpriteRenderer>().sprite = sprites[23];
-                break;
             case 'y':
                 spot.GetComponent<SpriteRenderer>().sprite = sprites[24];
-                break;
-            case 'z':
-                spot.GetComponent<SpriteRenderer>().sprite = sprites[25];
                 break;
 
         }
@@ -464,7 +468,7 @@ public class GameManager : MonoBehaviour {
     public void MakeShape()
     {
 
-        SetRandomLetter(rows[10].GetChild(2));
+        //SetRandomLetter(rows[10].GetChild(2));
         SetRandomLetter(rows[10].GetChild(3));
 
         /*

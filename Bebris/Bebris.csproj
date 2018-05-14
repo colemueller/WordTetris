@@ -302,8 +302,36 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_SCRIPTS\charanim.cs" />
+    <Compile Include="Assets\_SCRIPTS\dictionaryReader.cs" />
     <Compile Include="Assets\_SCRIPTS\GameManager.cs" />
     <Compile Include="Assets\_SCRIPTS\letter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_a.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_b.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_c.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_d.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_e.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_f.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_g.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_h.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_i.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_j.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_k.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_l.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_m.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_n.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_o.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_p.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_q.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_r.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_s.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_t.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_u.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_v.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_w.txt" />
+    <None Include="Assets\_SCRIPTS\BebrisListTest_Max7_y.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
