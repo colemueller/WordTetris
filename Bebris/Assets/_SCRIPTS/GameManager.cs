@@ -7,10 +7,8 @@ public class GameManager : MonoBehaviour {
 
     public List<Sprite> sprites = new List<Sprite>();
     public float gravSpeed;
-    private List<GameObject> boardBlocks = new List<GameObject>();
-    private List<GameObject> boardShapes = new List<GameObject>();
 
-    public dictionaryReader dictCheck = new dictionaryReader();
+    public dictionaryReader dictCheck;
 
     public Transform Grid;
     private Transform[] rows;
@@ -225,8 +223,8 @@ public class GameManager : MonoBehaviour {
         bool movement = true;
         int cantMoveCount = 0;
 
-        int checkRow = 0;
-        int checkCol = 0;
+        int checkRow = -1;
+        int checkCol = -1;
 
         if (movement)
         {
@@ -247,7 +245,7 @@ public class GameManager : MonoBehaviour {
                         {
                             rows[i].GetChild(j).GetComponent<letter>().liveLetter = false;
                             cantMoveCount++;
-                            
+
                             if (cantMoveCount == totalLetters)
                             {
                                 checkRow = i;
@@ -262,10 +260,50 @@ public class GameManager : MonoBehaviour {
         if (!movement)
         {
             //Check dictionary at desired row
-            List<string> rowContents = new List<string>();
-            rowContents = GetRow(checkRow);
-            dictCheck.CheckDictionary(rowContents);
+            if (checkRow != -1)
+            {
+                for (int lim = 0; checkRow >= lim; checkRow--)
+                {
+                    List<char> rowContents = GetRow(checkRow);
 
+                    for (int length = 0; length < 7; length++)
+                    {
+                        if (!dictCheck.CheckDictionary(rowContents))
+                        {
+                            List<char> tempContents = rowContents;
+                            for (int shorterWord = 0; tempContents.Count > 3; shorterWord++)
+                            {
+                                Debug.Log("Removing index: " + (tempContents.Count - 1));
+                                tempContents.RemoveAt(tempContents.Count - 1);
+                                Debug.Log("Length of tempContents: " + tempContents.Count);
+                                
+                                if (!dictCheck.CheckDictionary(tempContents))
+                                {
+                                    //Still no words  
+                                }
+                                else
+                                {
+                                    //Remove letters
+                                }
+                            }
+                            Debug.Log("Length of tempContents: " + tempContents.Count);
+                            //-----------------------------------------------------------------------------------
+                            //PROBLEM: rowContents is randomly being reduced to a count of 3 elements around here
+                            //-----------------------------------------------------------------------------------
+                            Debug.Log("Length of rowContents: " + rowContents.Count);
+                            foreach (char elem in rowContents)
+                            {
+                                Debug.Log("RowContents at " + rowContents.IndexOf(elem) + ": " + elem);
+                            }
+                            rowContents.RemoveAt(0);
+                        }
+                        else
+                        {
+                            //Remove letters from board
+                        }
+                    }
+                }
+            }
 
             MakeShape();
             movement = true;
@@ -274,16 +312,13 @@ public class GameManager : MonoBehaviour {
         StartCoroutine(Gravity());
     }
 
-    public List<string> GetRow(int row)
+    public List<char> GetRow(int row)
     {
-        List<string> rowContents = new List<string>();
+        List<char> rowContents = new List<char>();
         for (int i = 0; i < 7; i++)
         {
-            if (rows[row].GetChild(i).GetComponent<letter>().isEmpty == false) {
-                rowContents.Add(rows[row].GetChild(i).GetComponent<letter>().currentChar.ToString());
-            }
+            rowContents.Add(rows[row].GetChild(i).GetComponent<letter>().currentChar);
         }
-
         return rowContents;
     }
 

@@ -3493,7 +3493,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 86206918364bd774c88adf477b41fb7d, type: 3}
   - {fileID: 21300000, guid: ee4a093554a378a48a2207db9e0ae919, type: 3}
   - {fileID: 21300000, guid: 4ac8b8c818bfb6d4b814bdcef2acc24d, type: 3}
-  gravSpeed: 0.85
+  gravSpeed: 1.5
   dictCheck: {fileID: 662486221}
   Grid: {fileID: 2042397752}
   oof: {fileID: 1543113468}

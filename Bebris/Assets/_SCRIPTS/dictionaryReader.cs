@@ -40,128 +40,128 @@ public class dictionaryReader : MonoBehaviour {
 		
 	}
 
-    public void CheckDictionary(List<string> rowToCheck)
+    public bool CheckDictionary(List<char> rowToCheck)
     {
-
-        
-
-        foreach (string wordToCheck in rowToCheck)
+        string word = "";
+        foreach (char l in rowToCheck)
         {
-            string suf = "";
-            if (wordToCheck.StartsWith("a"))
-            {
-                suf = "_a";
-            }
-            else if (wordToCheck.StartsWith("b"))
-            {
-                suf = "_b";
-            }
-            else if (wordToCheck.StartsWith("c"))
-            {
-                suf = "_c";
-            }
-            else if (wordToCheck.StartsWith("d"))
-            {
-                suf = "_d";
-            }
-            else if (wordToCheck.StartsWith("e"))
-            {
-                suf = "_e";
-            }
-            else if (wordToCheck.StartsWith("f"))
-            {
-                suf = "_f";
-            }
-            else if (wordToCheck.StartsWith("g"))
-            {
-                suf = "_g";
-            }
-            else if (wordToCheck.StartsWith("h"))
-            {
-                suf = "_h";
-            }
-            else if (wordToCheck.StartsWith("i"))
-            {
-                suf = "_i";
-            }
-            else if (wordToCheck.StartsWith("j"))
-            {
-                suf = "_j";
-            }
-            else if (wordToCheck.StartsWith("k"))
-            {
-                suf = "_k";
-            }
-            else if (wordToCheck.StartsWith("l"))
-            {
-                suf = "_l";
-            }
-            else if (wordToCheck.StartsWith("m"))
-            {
-                suf = "_m";
-            }
-            else if (wordToCheck.StartsWith("n"))
-            {
-                suf = "_n";
-            }
-            else if (wordToCheck.StartsWith("o"))
-            {
-                suf = "_o";
-            }
-            else if (wordToCheck.StartsWith("p"))
-            {
-                suf = "_p";
-            }
-            else if (wordToCheck.StartsWith("q"))
-            {
-                suf = "_q";
-            }
-            else if (wordToCheck.StartsWith("r"))
-            {
-                suf = "_r";
-            }
-            else if (wordToCheck.StartsWith("s"))
-            {
-                suf = "_s";
-            }
-            else if (wordToCheck.StartsWith("t"))
-            {
-                suf = "_t";
-            }
-            else if (wordToCheck.StartsWith("u"))
-            {
-                suf = "_u";
-            }
-            else if (wordToCheck.StartsWith("v"))
-            {
-                suf = "_v";
-            }
-            else if (wordToCheck.StartsWith("w"))
-            {
-                suf = "_w";
-            }
-            else if (wordToCheck.StartsWith("y"))
-            {
-                suf = "_y";
-            }
-            string path = "Assets/_SCRIPTS/BebrisListTest_Max7" + suf + ".txt";
-
-            StreamReader reader = new StreamReader(path);
-            string line = reader.ReadLine();
-            Debug.Log(wordToCheck);
-            while ((line != null))
-            {
-                line = reader.ReadLine();
-                if (line == wordToCheck)
-                {
-                    Debug.Log("Found it!");
-                    break;
-                }
-            }
-
-
-
-            reader.Close();
+            word += l;
         }
-    }
+
+        string suf = "";
+        if (word.StartsWith("a"))
+        {
+            suf = "_a";
+        }
+        else if (word.StartsWith("b"))
+        {
+            suf = "_b";
+        }
+        else if (word.StartsWith("c"))
+        {
+            suf = "_c";
+        }
+        else if (word.StartsWith("d"))
+        {
+            suf = "_d";
+        }
+        else if (word.StartsWith("e"))
+        {
+            suf = "_e";
+        }
+        else if (word.StartsWith("f"))
+        {
+            suf = "_f";
+        }
+        else if (word.StartsWith("g"))
+        {
+            suf = "_g";
+        }
+        else if (word.StartsWith("h"))
+        {
+            suf = "_h";
+        }
+        else if (word.StartsWith("i"))
+        {
+            suf = "_i";
+        }
+        else if (word.StartsWith("j"))
+        {
+            suf = "_j";
+        }
+        else if (word.StartsWith("k"))
+        {
+            suf = "_k";
+        }
+        else if (word.StartsWith("l"))
+        {
+            suf = "_l";
+        }
+        else if (word.StartsWith("m"))
+        {
+            suf = "_m";
+        }
+        else if (word.StartsWith("n"))
+        {
+            suf = "_n";
+        }
+        else if (word.StartsWith("o"))
+        {
+            suf = "_o";
+        }
+        else if (word.StartsWith("p"))
+        {
+            suf = "_p";
+        }
+        else if (word.StartsWith("q"))
+        {
+            suf = "_q";
+        }
+        else if (word.StartsWith("r"))
+        {
+            suf = "_r";
+        }
+        else if (word.StartsWith("s"))
+        {
+            suf = "_s";
+        }
+        else if (word.StartsWith("t"))
+        {
+            suf = "_t";
+        }
+        else if (word.StartsWith("u"))
+        {
+            suf = "_u";
+        }
+        else if (word.StartsWith("v"))
+        {
+            suf = "_v";
+        }
+        else if (word.StartsWith("w"))
+        {
+            suf = "_w";
+        }
+        else if (word.StartsWith("y"))
+        {
+            suf = "_y";
+        }
+        string path = "Assets/_SCRIPTS/BebrisListTest_Max7" + suf + ".txt";
+        Debug.Log("Looking for " + word);
+        StreamReader reader = new StreamReader(path);
+        string line = reader.ReadLine();
+        while ((line != null))
+        {
+            line = reader.ReadLine();
+            if (line == word.ToString())
+            {
+                Debug.Log("Found: " + word);
+                reader.Close();
+                return true;
+            }
+        }
+
+        reader.Close();
+        return false;
+    }    
+
 }
