@@ -30,6 +30,8 @@ public class dictionaryReader : MonoBehaviour {
     public TextAsset dictionaryList_w;
     public TextAsset dictionaryList_y;
 
+    public bool foundAWord = false;
+
     // Use this for initialization
     void Start () {
 
@@ -40,7 +42,7 @@ public class dictionaryReader : MonoBehaviour {
 		
 	}
 
-    public bool CheckDictionary(List<char> rowToCheck)
+    public string CheckDictionary(List<char> rowToCheck)
     {
         string word = "";
         foreach (char l in rowToCheck)
@@ -156,12 +158,14 @@ public class dictionaryReader : MonoBehaviour {
             {
                 Debug.Log("Found: " + word);
                 reader.Close();
-                return true;
+                foundAWord = true;
+                return word;
             }
         }
 
         reader.Close();
-        return false;
+        foundAWord = false;
+        return "";
     }    
 
 }

@@ -257,54 +257,56 @@ public class GameManager : MonoBehaviour {
                 }
             }
         }
-        if (!movement)
+        if(!movement)
         {
             //Check dictionary at desired row
             if (checkRow != -1)
             {
+                string foundWord = "";
                 for (int lim = 0; checkRow >= lim; checkRow--)
                 {
                     List<char> rowContents = GetRow(checkRow);
 
-                    for (int length = 0; length < 7; length++)
+                    for (int length = 0; length < 5; length++)
                     {
-                        if (!dictCheck.CheckDictionary(rowContents))
+                        foundWord = dictCheck.CheckDictionary(rowContents);
+                        if (! dictCheck.foundAWord)
                         {
-                            List<char> tempContents = rowContents;
+                            List<char> tempContents = new List<char>();
+                            foreach (char elem in rowContents)
+                            {
+                                tempContents.Add(elem);
+                            }
+
                             for (int shorterWord = 0; tempContents.Count > 3; shorterWord++)
                             {
-                                Debug.Log("Removing index: " + (tempContents.Count - 1));
                                 tempContents.RemoveAt(tempContents.Count - 1);
-                                Debug.Log("Length of tempContents: " + tempContents.Count);
-                                
-                                if (!dictCheck.CheckDictionary(tempContents))
+
+                                foundWord = dictCheck.CheckDictionary(tempContents);
+                                if (! dictCheck.foundAWord)
                                 {
-                                    //Still no words  
+                                    Debug.Log("No word");  
                                 }
                                 else
                                 {
-                                    //Remove letters
+                                    RemoveLetters(foundWord, checkRow);
+                                    //MakeShape();
+                                    break;
                                 }
-                            }
-                            Debug.Log("Length of tempContents: " + tempContents.Count);
-                            //-----------------------------------------------------------------------------------
-                            //PROBLEM: rowContents is randomly being reduced to a count of 3 elements around here
-                            //-----------------------------------------------------------------------------------
-                            Debug.Log("Length of rowContents: " + rowContents.Count);
-                            foreach (char elem in rowContents)
-                            {
-                                Debug.Log("RowContents at " + rowContents.IndexOf(elem) + ": " + elem);
                             }
                             rowContents.RemoveAt(0);
                         }
                         else
                         {
-                            //Remove letters from board
+                            RemoveLetters(foundWord, checkRow);
+                            //MakeShape();
+                            break;
                         }
                     }
                 }
             }
 
+            Debug.Log("FUCH YOU!");
             MakeShape();
             movement = true;
         }
@@ -320,6 +322,31 @@ public class GameManager : MonoBehaviour {
             rowContents.Add(rows[row].GetChild(i).GetComponent<letter>().currentChar);
         }
         return rowContents;
+    }
+
+    public void RemoveLetters(string foundWord, int row)
+    {
+        List<char> charsInWord = new List<char>();
+        foreach (char let in foundWord)
+        {
+            charsInWord.Add(let);
+        }
+        Debug.Log("Removing Letters: " + foundWord);
+        for (int j = 0; j < 7; j++)
+        {
+            for (int i = 0; i < charsInWord.Count; i++)
+            {
+                Debug.Log("Chars in word: " + charsInWord[i]);
+                Debug.Log("Does it match this: " + rows[row].GetChild(j).GetComponent<letter>().currentChar);
+                if (charsInWord[i] == rows[row].GetChild(j).GetComponent<letter>().currentChar)
+                {
+                    Debug.Log("Delete: " + charsInWord[i]);
+                    rows[row].GetChild(j).GetComponent<letter>().Clear();
+                    rows[row].GetChild(j).GetComponent<SpriteRenderer>().sprite = null;
+                    totalLetters--;
+                }
+            }
+        }
     }
 
     //Picks a random letter to put in the shape
