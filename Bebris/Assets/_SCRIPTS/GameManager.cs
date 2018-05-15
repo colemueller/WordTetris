@@ -2,21 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
-
+    public SoundManager sound;
+    public charanim charAnim;
     public List<Sprite> sprites = new List<Sprite>();
     public float gravSpeed;
-
+    
     public dictionaryReader dictCheck;
 
     public Transform Grid;
     private Transform[] rows;
 
     private int totalLetters;
-    public AudioSource oof;
+
     public GameObject EndScreen;
     private bool doEnd;
+    public ParticleSystem yay;
+
+    private int score;
+    public Text scoreText;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +46,8 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
+        scoreText.text = score.ToString();
+
         //go left
         if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -220,6 +228,7 @@ public class GameManager : MonoBehaviour {
     private IEnumerator Gravity()
     {
         yield return new WaitForSeconds(gravSpeed/2);
+        //score++;
         bool movement = true;
         int cantMoveCount = 0;
 
@@ -306,7 +315,7 @@ public class GameManager : MonoBehaviour {
                 }
             }
 
-            Debug.Log("FUCH YOU!");
+            //Debug.Log("FUCH YOU!");
             MakeShape();
             movement = true;
         }
@@ -343,11 +352,24 @@ public class GameManager : MonoBehaviour {
                     Debug.Log("Delete: " + charsInWord[i]);
                     rows[row].GetChild(j).GetComponent<letter>().Clear();
                     rows[row].GetChild(j).GetComponent<SpriteRenderer>().sprite = null;
+                    Instantiate(yay, rows[row].GetChild(j));
+                    
                     totalLetters--;
                 }
             }
         }
+
+        ClearWordEffects();
     }
+
+    void ClearWordEffects()
+    {
+        //Debug.Log("POP");
+        charAnim.HappyBoi();
+        sound.ClearWord();
+        score += 100;
+    }
+
 
     //Picks a random letter to put in the shape
     public void SetRandomLetter(Transform spot)
@@ -609,7 +631,7 @@ public class GameManager : MonoBehaviour {
     public void EndGame()
     {
         Time.timeScale = 0;
-        oof.Play();
+        sound.PlayOof();
         EndScreen.SetActive(true);
         Debug.Log("Game Over, Man");
         doEnd = false;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class charanim : MonoBehaviour {
 
+    public Sprite happyBoi;
     public Sprite sprite_1;
     public Sprite sprite_2;
     public Sprite sprite_3;
@@ -33,6 +34,14 @@ public class charanim : MonoBehaviour {
         {
             current = sprite_2;
         }
+        else if(current == sprite_2)
+        {
+            current = sprite_3;
+        }
+        else if (current == sprite_3)
+        {
+            current = sprite_4;
+        }
         else
         {
             current = sprite_1;
@@ -40,5 +49,12 @@ public class charanim : MonoBehaviour {
 
         this.GetComponent<SpriteRenderer>().sprite = current;
         timer = animTimer;
+    }
+
+    public void HappyBoi()
+    {
+        current = happyBoi;
+        this.GetComponent<SpriteRenderer>().sprite = current;
+        timer = 1;
     }
 }
