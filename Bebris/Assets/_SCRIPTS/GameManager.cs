@@ -276,7 +276,7 @@ public class GameManager : MonoBehaviour {
                 {
                     List<char> rowContents = GetRow(checkRow);
 
-                    for (int length = 0; length < 5; length++)
+                    for (int startCol = 0; startCol < 5; startCol++)
                     {
                         foundWord = dictCheck.CheckDictionary(rowContents);
                         if (! dictCheck.foundAWord)
@@ -298,8 +298,7 @@ public class GameManager : MonoBehaviour {
                                 }
                                 else
                                 {
-                                    RemoveLetters(foundWord, checkRow);
-                                    //MakeShape();
+                                    RemoveLetters(foundWord, checkRow, startCol);
                                     break;
                                 }
                             }
@@ -307,8 +306,7 @@ public class GameManager : MonoBehaviour {
                         }
                         else
                         {
-                            RemoveLetters(foundWord, checkRow);
-                            //MakeShape();
+                            RemoveLetters(foundWord, checkRow, startCol);
                             break;
                         }
                     }
@@ -333,30 +331,22 @@ public class GameManager : MonoBehaviour {
         return rowContents;
     }
 
-    public void RemoveLetters(string foundWord, int row)
+    public void RemoveLetters(string foundWord, int row, int startCol)
     {
         List<char> charsInWord = new List<char>();
+        List<char> charsToDel = new List<char>();
         foreach (char let in foundWord)
         {
             charsInWord.Add(let);
         }
-        Debug.Log("Removing Letters: " + foundWord);
-        for (int j = 0; j < 7; j++)
+
+        for (int j = 0; j < foundWord.Length; j++)
         {
-            for (int i = 0; i < charsInWord.Count; i++)
-            {
-                Debug.Log("Chars in word: " + charsInWord[i]);
-                Debug.Log("Does it match this: " + rows[row].GetChild(j).GetComponent<letter>().currentChar);
-                if (charsInWord[i] == rows[row].GetChild(j).GetComponent<letter>().currentChar)
-                {
-                    Debug.Log("Delete: " + charsInWord[i]);
-                    rows[row].GetChild(j).GetComponent<letter>().Clear();
-                    rows[row].GetChild(j).GetComponent<SpriteRenderer>().sprite = null;
-                    Instantiate(yay, rows[row].GetChild(j));
-                    
-                    totalLetters--;
-                }
-            }
+            rows[row].GetChild(j +startCol).GetComponent<letter>().Clear();
+            rows[row].GetChild(j + startCol).GetComponent<SpriteRenderer>().sprite=null;
+            Instantiate(yay, rows[row].GetChild(j + startCol));
+
+            totalLetters--;
         }
 
         ClearWordEffects();
