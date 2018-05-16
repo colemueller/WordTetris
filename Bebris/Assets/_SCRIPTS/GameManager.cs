@@ -49,19 +49,19 @@ public class GameManager : MonoBehaviour {
         scoreText.text = score.ToString();
 
         //go left
-        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetButtonDown("xbox_x"))
         {
             MoveLeft();
         }
 
         //go right
-        if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetButtonDown("xbox_b"))
         {
             MoveRight();
         }
 
         //go down
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetButtonDown("xbox_a"))
         {
             MoveDown();
         }
