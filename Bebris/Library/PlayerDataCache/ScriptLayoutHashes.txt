@@ -10,7 +10,7 @@ dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 b5ab147d6d8b4b80343427e41aba0af9 Assembly-CSharp.dll:.letter
 28c56681729b8663f2b8e79b2f3dbb8a Assembly-CSharp.dll:.charanim
-59ae075940ff948aa001a65c725df720 Assembly-CSharp.dll:.GameManager
+82e6c7320fd585ed7b291c69823a5d12 Assembly-CSharp.dll:.GameManager
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer

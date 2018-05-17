@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     private int checkRow;
     private int checkCol;
 
+    public Transform nextUp;
     public Transform Grid;
     private Transform[] rows;
 
@@ -43,7 +44,9 @@ public class GameManager : MonoBehaviour {
         }
 
         StartCoroutine(Gravity());
-        MakeShape();
+        SetNextUp();
+        SetRandomLetter();
+        SetNextUp();
 	}
 
     private void Update()
@@ -62,10 +65,22 @@ public class GameManager : MonoBehaviour {
             MoveRight();
         }
 
-        //go down
+        
+        //Speed up
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetButtonDown("xbox_a"))
         {
-            MoveDown();
+            IncreaseSpeed();
+        }
+
+        //Slow
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            DecreaseSpeed();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
         }
 
         //End Game
@@ -203,39 +218,25 @@ public class GameManager : MonoBehaviour {
         }
     }
 	
-    private void MoveDown()
+    private void IncreaseSpeed()
     {
-        for (int i = 0; i <= 11; i++)
-        {
-            for (int j = 0; j < 7; j++)
-            {
-                //current space has a letter in it
-                if (rows[i].GetChild(j).GetComponent<letter>().isEmpty == false)
-                {
-                    //current row is NOT bottom row and there is an empty space below current space
-                    if ((i != 0) && (rows[i - 1].GetChild(j).GetComponent<letter>().isEmpty))
-                    {
-                        SetLetter(rows[i - 1].GetChild(j), rows[i].GetChild(j).GetComponent<letter>().currentChar);
-                        ClearLetter(rows[i].GetChild(j));
-                    }
-                    else
-                    {
-                        rows[i].GetChild(j).GetComponent<letter>().liveLetter = false;
-                    }
-                }
-            }
-        }
+        gravSpeed -= .01f;
+    }
+
+    private void DecreaseSpeed()
+    {
+        gravSpeed += .01f;
     }
 
     private IEnumerator Gravity()
     {
         yield return new WaitForSeconds(gravSpeed / 2);
-        //score++;
+
         bool movement = true;
         int cantMoveCount = 0;
 
 
-
+        //Debug.Log("Movement: " + movement);
         if (movement)
         {
             for (int i = 0; i <= 11; i++)
@@ -253,17 +254,16 @@ public class GameManager : MonoBehaviour {
                         }
                         else
                         {
-                            //Debug.Log("Live?: " + rows[i].GetChild(j).GetComponent<letter>().liveLetter);
                             if (rows[i].GetChild(j).GetComponent<letter>().liveLetter)
                             {
                                 checkRow = i;
+                                checkCol = j;
                             }
                             rows[i].GetChild(j).GetComponent<letter>().liveLetter = false;
                             cantMoveCount++;
 
                             if (cantMoveCount == totalLetters)
-                            {
-                                checkCol = j;
+                            {                                
                                 movement = false;
                             }
                         }
@@ -274,19 +274,24 @@ public class GameManager : MonoBehaviour {
 
         if (!movement)
         {
-
-            Debug.Log("FUCK YOU, THERES NO MOVEMENT");
-            Debug.Log(checkRow);
             //Check dictionary at desired row
-            if (checkRow != -1)
+            if (checkRow != -1 && checkCol != -1)
             {
                 string foundWord = "";
+                string vertWord = "";
+
                 List<char> rowContents = GetRow(checkRow);
+                List<char> colContents = GetCol(checkRow, checkCol);
 
                 for (int startCol = 0; startCol < 5; startCol++)
                 {
+                    if (foundWord != "")
+                    {
+                        break;
+                    }
+
                     foundWord = dictCheck.CheckDictionary(rowContents);
-                    if (!dictCheck.foundAWord)
+                    if (foundWord == "")
                     {
                         List<char> tempContents = new List<char>();
                         foreach (char elem in rowContents)
@@ -305,6 +310,23 @@ public class GameManager : MonoBehaviour {
                             }
                             else
                             {
+                                if (colContents.Count >= 3) {
+                                    vertWord = dictCheck.CheckDictionary(colContents);
+                                    if (vertWord == "")
+                                    {
+                                        for (int shorterVertWord = 0; colContents.Count >= 3; shorterVertWord++)
+                                        {
+                                            colContents.RemoveAt(colContents.Count - 1);
+
+                                            vertWord = dictCheck.CheckDictionary(colContents);
+                                            if (vertWord != "")
+                                            {
+                                                RemoveColLetters(vertWord, checkCol, checkRow);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
                                 RemoveLetters(foundWord, checkRow, startCol);
                                 break;
                             }
@@ -317,17 +339,56 @@ public class GameManager : MonoBehaviour {
                         break;
                     }
                 }
+
+                if (colContents.Count >= 3)
+                {
+                    vertWord = dictCheck.CheckDictionary(colContents);
+                    if (vertWord == "")
+                    {
+                        for (int shorterVertWord = 0; colContents.Count >= 3; shorterVertWord++)
+                        {
+                            colContents.RemoveAt(colContents.Count - 1);
+
+                            vertWord = dictCheck.CheckDictionary(colContents);
+                            if (vertWord != "")
+                            {
+                                RemoveColLetters(vertWord, checkCol, checkRow);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        RemoveColLetters(vertWord, checkCol, checkRow);
+                    }
+                }
             }
 
-            Debug.Log("FUCK YOU, SPAWN NEW LETTER");
-            MakeShape();
-            movement = true;
+            bool needsGrav = false;
+            for (int i = 0; i <= 11; i++)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+                    if (rows[i].GetChild(j).GetComponent<letter>().liveLetter)
+                    {
+                        needsGrav = true;
+                        break;
+                    }
+                }
+                if(needsGrav)
+                {
+                    break;
+                }
+            }
+            if (!needsGrav)
+            {
+                SetRandomLetter();
+                SetNextUp();
+                movement = true;
+            }
         }
 
-        if (movement)
-        {
             StartCoroutine(Gravity());
-        }
     }
 
     public List<char> GetRow(int row)
@@ -338,6 +399,40 @@ public class GameManager : MonoBehaviour {
             rowContents.Add(rows[row].GetChild(i).GetComponent<letter>().currentChar);
         }
         return rowContents;
+    }
+
+    public List<char> GetCol (int row, int col)
+    {
+        List<char> colContents = new List<char>();
+        for (int i = row; i >= 0; i--)
+        {
+            colContents.Add(rows[i].GetChild(col).GetComponent<letter>().currentChar);
+        }
+        return colContents;
+    }
+
+    public void RemoveColLetters(string vertWord, int col, int startRow)
+    {
+        List<char> charsInWord = new List<char>();
+        List<char> charsToDel = new List<char>();
+
+        foreach (char c in vertWord)
+        {
+            charsInWord.Add(c);
+        }
+
+
+        Debug.Log("Deleting vertWord: " + vertWord + " Starting at row: " + startRow + " Length is: " + vertWord.Length);
+        for (int i = 0; i < vertWord.Length; i++)
+        {
+            rows[startRow - i].GetChild(col).GetComponent<letter>().Clear();
+            rows[startRow - i].GetChild(col).GetComponent<SpriteRenderer>().sprite = null;
+            Instantiate(yay, rows[startRow - i].GetChild(col));
+
+            totalLetters--;
+        }
+
+        ClearWordEffects();
     }
 
     public void RemoveLetters(string foundWord, int row, int startCol)
@@ -369,90 +464,177 @@ public class GameManager : MonoBehaviour {
         score += 100;
     }
 
-
-    //Picks a random letter to put in the shape
-    public void SetRandomLetter(Transform spot)
+    void SetNextUp()
     {
-        int i = Random.Range(0, 24);
-        spot.GetComponent<SpriteRenderer>().sprite = sprites[i];
-        spot.GetComponent<letter>().isEmpty = false;
-        spot.GetComponent<letter>().liveLetter = true;
+        int picker = Random.Range(0, 98);
 
-        switch (i)
+        if (picker >= 0 && picker < 12)
         {
-            case 0:
-                spot.GetComponent<letter>().currentChar = 'a';
-                break;
-            case 1:
-                spot.GetComponent<letter>().currentChar = 'b';
-                break;
-            case 2:
-                spot.GetComponent<letter>().currentChar = 'c';
-                break;
-            case 3:
-                spot.GetComponent<letter>().currentChar = 'd';
-                break;
-            case 4:
-                spot.GetComponent<letter>().currentChar = 'e';
-                break;
-            case 5:
-                spot.GetComponent<letter>().currentChar = 'f';
-                break;
-            case 6:
-                spot.GetComponent<letter>().currentChar = 'g';
-                break;
-            case 7:
-                spot.GetComponent<letter>().currentChar = 'h';
-                break;
-            case 8:
-                spot.GetComponent<letter>().currentChar = 'i';
-                break;
-            case 9:
-                spot.GetComponent<letter>().currentChar = 'j';
-                break;
-            case 10:
-                spot.GetComponent<letter>().currentChar = 'k';
-                break;
-            case 11:
-                spot.GetComponent<letter>().currentChar = 'l';
-                break;
-            case 12:
-                spot.GetComponent<letter>().currentChar = 'm';
-                break;
-            case 13:
-                spot.GetComponent<letter>().currentChar = 'n';
-                break;
-            case 14:
-                spot.GetComponent<letter>().currentChar = 'o';
-                break;
-            case 15:
-                spot.GetComponent<letter>().currentChar = 'p';
-                break;
-            case 16:
-                spot.GetComponent<letter>().currentChar = 'q';
-                break;
-            case 17:
-                spot.GetComponent<letter>().currentChar = 'r';
-                break;
-            case 18:
-                spot.GetComponent<letter>().currentChar = 's';
-                break;
-            case 19:
-                spot.GetComponent<letter>().currentChar = 't';
-                break;
-            case 20:
-                spot.GetComponent<letter>().currentChar = 'u';
-                break;
-            case 21:
-                spot.GetComponent<letter>().currentChar = 'v';
-                break;
-            case 22:
-                spot.GetComponent<letter>().currentChar = 'w';
-                break;
-            case 23:
-                spot.GetComponent<letter>().currentChar = 'y';
-                break;
+            //e
+            nextUp.GetComponent<letter>().currentChar = 'e';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[4];
         }
+        else if (picker >= 12 && picker < 21)
+        {
+            //a
+            nextUp.GetComponent<letter>().currentChar = 'a';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[0];
+        }
+        else if (picker >= 21 && picker < 30)
+        {
+            //i
+            nextUp.GetComponent<letter>().currentChar = 'i';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[8];
+        }
+        else if (picker >= 30 && picker < 38)
+        {
+            //o
+            nextUp.GetComponent<letter>().currentChar = 'o';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[14];
+        }
+        else if (picker >= 38 && picker < 44)
+        {
+            //n
+            nextUp.GetComponent<letter>().currentChar = 'n';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[13];
+        }
+        else if (picker >= 44 && picker < 50)
+        {
+            //r
+            nextUp.GetComponent<letter>().currentChar = 'r';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[17];
+        }
+        else if (picker >= 50 && picker < 56)
+        {
+            //t
+            nextUp.GetComponent<letter>().currentChar = 't';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[19];
+        }
+        else if (picker >= 56 && picker < 60)
+        {
+            //l
+            nextUp.GetComponent<letter>().currentChar = 'l';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[11];
+        }
+        else if (picker >= 60 && picker < 64)
+        {
+            //s
+            nextUp.GetComponent<letter>().currentChar = 's';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[18];
+        }
+        else if (picker >= 64 && picker < 68)
+        {
+            //u
+            nextUp.GetComponent<letter>().currentChar = 'u';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[20];
+        }
+        else if (picker >= 68 && picker < 72)
+        {
+            //d
+            nextUp.GetComponent<letter>().currentChar = 'd';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[3];
+        }
+        else if (picker >= 72 && picker < 75)
+        {
+            //g
+            nextUp.GetComponent<letter>().currentChar = 'g';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[6];
+        }
+        else if (picker >= 75 && picker < 77)
+        {
+            //b
+            nextUp.GetComponent<letter>().currentChar = 'b';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[1];
+        }
+        else if (picker >= 77 && picker < 79)
+        {
+            //c
+            nextUp.GetComponent<letter>().currentChar = 'c';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[2];
+        }
+        else if (picker >= 79 && picker < 81)
+        {
+            //m
+            nextUp.GetComponent<letter>().currentChar = 'm';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[12];
+        }
+        else if (picker >= 81 && picker < 83)
+        {
+            //p
+            nextUp.GetComponent<letter>().currentChar = 'p';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[15];
+        }
+        else if (picker >= 83 && picker < 85)
+        {
+            //f
+            nextUp.GetComponent<letter>().currentChar = 'f';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[5];
+        }
+        else if (picker >= 85 && picker < 87)
+        {
+            //h
+            nextUp.GetComponent<letter>().currentChar = 'h';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[7];
+        }
+        else if (picker >= 87 && picker < 89)
+        {
+            //v
+            nextUp.GetComponent<letter>().currentChar = 'v';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[21];
+        }
+        else if (picker >= 89 && picker < 91)
+        {
+            //w
+            nextUp.GetComponent<letter>().currentChar = 'w';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[22];
+        }
+        else if (picker >= 91 && picker < 93)
+        {
+            //y
+            nextUp.GetComponent<letter>().currentChar = 'y';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[24];
+        }
+        else if (picker == 93 || picker == 97)
+        {
+            //k
+            nextUp.GetComponent<letter>().currentChar = 'k';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[10];
+        }
+        else if (picker == 94 || picker == 95)
+        {
+            //j
+            nextUp.GetComponent<letter>().currentChar = 'j';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[9];
+        }
+        else if (picker == 99)
+        {
+            //x
+            nextUp.GetComponent<letter>().currentChar = 'x';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[23];
+        }
+        else if (picker == 96)
+        {
+            //q
+            nextUp.GetComponent<letter>().currentChar = 'q';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[16];
+        }
+        else if (picker == 100)
+        {
+            //z
+            nextUp.GetComponent<letter>().currentChar = 'z';
+            nextUp.GetComponent<SpriteRenderer>().sprite = sprites[25];
+        }
+        nextUp.GetComponent<letter>().isEmpty = false;
+}
+    //Picks a random letter to put in the shape
+    public void SetRandomLetter()
+    {
+        rows[11].GetChild(3).GetComponent<SpriteRenderer>().sprite = nextUp.GetComponent<SpriteRenderer>().sprite;
+        rows[11].GetChild(3).GetComponent<letter>().currentChar = nextUp.GetComponent<letter>().currentChar;
+        rows[11].GetChild(3).GetComponent<letter>().isEmpty = false;
+        rows[11].GetChild(3).GetComponent<letter>().liveLetter = true;
+            
+        nextUp.GetComponent<letter>().Clear();
 
         totalLetters++;
     }
@@ -534,8 +716,14 @@ public class GameManager : MonoBehaviour {
             case 'w':
                 spot.GetComponent<SpriteRenderer>().sprite = sprites[22];
                 break;
+            case 'x':
+                spot.GetComponent<SpriteRenderer>().sprite = sprites[23];
+                break;
             case 'y':
                 spot.GetComponent<SpriteRenderer>().sprite = sprites[24];
+                break;
+            case 'z':
+                spot.GetComponent<SpriteRenderer>().sprite = sprites[25];
                 break;
 
         }
@@ -545,75 +733,6 @@ public class GameManager : MonoBehaviour {
     {
         spot.GetComponent<SpriteRenderer>().sprite = null;
         spot.GetComponent<letter>().Clear();
-    }
-
-    //Creates a block formation using the randomLetter() method above
-    public void MakeShape()
-    {
-
-        //SetRandomLetter(rows[10].GetChild(2));
-        SetRandomLetter(rows[10].GetChild(3));
-
-        /*
-        int i = Random.Range(0,5);
-        
-        
-        switch (i)
-        {
-            case 0:
-                //L shape
-                SetRandomLetter(rows[10].GetChild(2));
-                SetRandomLetter(rows[10].GetChild(3));
-                SetRandomLetter(rows[10].GetChild(4));
-
-                SetRandomLetter(rows[11].GetChild(4));
-                break;
-
-
-            case 1:
-                //T shape
-                SetRandomLetter(rows[11].GetChild(2));
-                SetRandomLetter(rows[11].GetChild(3));
-                SetRandomLetter(rows[11].GetChild(4));
-
-                SetRandomLetter(rows[10].GetChild(3));
-                break;
-
-
-            case 2:
-                //Line shape
-                SetRandomLetter(rows[11].GetChild(1));
-                SetRandomLetter(rows[11].GetChild(2));
-                SetRandomLetter(rows[11].GetChild(3));
-                SetRandomLetter(rows[11].GetChild(4));
-
-                break;
-
-
-            case 3:
-                //S shape
-                SetRandomLetter(rows[10].GetChild(2));
-                SetRandomLetter(rows[10].GetChild(3));
-                SetRandomLetter(rows[11].GetChild(3));
-                SetRandomLetter(rows[11].GetChild(4));
-
-                break;
-
-            case 4:
-                //Square shape
-                SetRandomLetter(rows[11].GetChild(3));
-                SetRandomLetter(rows[11].GetChild(4));
-
-                SetRandomLetter(rows[10].GetChild(3));
-                SetRandomLetter(rows[10].GetChild(4));
-
-                break;
-
-
-            default:
-                break;
-        }
-        */
     }
 
     public void delShapes()
