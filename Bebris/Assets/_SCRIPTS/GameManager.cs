@@ -253,6 +253,7 @@ public class GameManager : MonoBehaviour {
                         }
                         else
                         {
+                            //Debug.Log("Live?: " + rows[i].GetChild(j).GetComponent<letter>().liveLetter);
                             if (rows[i].GetChild(j).GetComponent<letter>().liveLetter)
                             {
                                 checkRow = i;
@@ -264,8 +265,6 @@ public class GameManager : MonoBehaviour {
                             {
                                 checkCol = j;
                                 movement = false;
-
-
                             }
                         }
                     }
@@ -275,6 +274,8 @@ public class GameManager : MonoBehaviour {
 
         if (!movement)
         {
+
+            Debug.Log("FUCK YOU, THERES NO MOVEMENT");
             Debug.Log(checkRow);
             //Check dictionary at desired row
             if (checkRow != -1)
@@ -318,6 +319,7 @@ public class GameManager : MonoBehaviour {
                 }
             }
 
+            Debug.Log("FUCK YOU, SPAWN NEW LETTER");
             MakeShape();
             movement = true;
         }
