@@ -148,7 +148,7 @@ public class dictionaryReader : MonoBehaviour {
             suf = "_y";
         }
         string path = "Assets/_SCRIPTS/BebrisListTest_Max7" + suf + ".txt";
-        Debug.Log("Looking for " + word);
+        //Debug.Log("Looking for " + word);
         StreamReader reader = new StreamReader(path);
         string line = reader.ReadLine();
         while ((line != null))

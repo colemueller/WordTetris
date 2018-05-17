@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
     public float gravSpeed;
     
     public dictionaryReader dictCheck;
+    private int checkRow;
+    private int checkCol;
 
     public Transform Grid;
     private Transform[] rows;
@@ -227,13 +229,12 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator Gravity()
     {
-        yield return new WaitForSeconds(gravSpeed/2);
+        yield return new WaitForSeconds(gravSpeed / 2);
         //score++;
         bool movement = true;
         int cantMoveCount = 0;
 
-        int checkRow = -1;
-        int checkCol = -1;
+
 
         if (movement)
         {
@@ -252,73 +253,79 @@ public class GameManager : MonoBehaviour {
                         }
                         else
                         {
+                            if (rows[i].GetChild(j).GetComponent<letter>().liveLetter)
+                            {
+                                checkRow = i;
+                            }
                             rows[i].GetChild(j).GetComponent<letter>().liveLetter = false;
                             cantMoveCount++;
 
                             if (cantMoveCount == totalLetters)
                             {
-                                checkRow = i;
                                 checkCol = j;
                                 movement = false;
+
+
                             }
                         }
                     }
                 }
             }
         }
-        if(!movement)
+
+        if (!movement)
         {
+            Debug.Log(checkRow);
             //Check dictionary at desired row
             if (checkRow != -1)
             {
                 string foundWord = "";
-                for (int lim = 0; checkRow >= lim; checkRow--)
+                List<char> rowContents = GetRow(checkRow);
+
+                for (int startCol = 0; startCol < 5; startCol++)
                 {
-                    List<char> rowContents = GetRow(checkRow);
-
-                    for (int startCol = 0; startCol < 5; startCol++)
+                    foundWord = dictCheck.CheckDictionary(rowContents);
+                    if (!dictCheck.foundAWord)
                     {
-                        foundWord = dictCheck.CheckDictionary(rowContents);
-                        if (! dictCheck.foundAWord)
+                        List<char> tempContents = new List<char>();
+                        foreach (char elem in rowContents)
                         {
-                            List<char> tempContents = new List<char>();
-                            foreach (char elem in rowContents)
-                            {
-                                tempContents.Add(elem);
-                            }
-
-                            for (int shorterWord = 0; tempContents.Count > 3; shorterWord++)
-                            {
-                                tempContents.RemoveAt(tempContents.Count - 1);
-
-                                foundWord = dictCheck.CheckDictionary(tempContents);
-                                if (! dictCheck.foundAWord)
-                                {
-                                    Debug.Log("No word");  
-                                }
-                                else
-                                {
-                                    RemoveLetters(foundWord, checkRow, startCol);
-                                    break;
-                                }
-                            }
-                            rowContents.RemoveAt(0);
+                            tempContents.Add(elem);
                         }
-                        else
+
+                        for (int shorterWord = 0; tempContents.Count > 3; shorterWord++)
                         {
-                            RemoveLetters(foundWord, checkRow, startCol);
-                            break;
+                            tempContents.RemoveAt(tempContents.Count - 1);
+
+                            foundWord = dictCheck.CheckDictionary(tempContents);
+                            if (!dictCheck.foundAWord)
+                            {
+                                //Debug.Log("No word");  
+                            }
+                            else
+                            {
+                                RemoveLetters(foundWord, checkRow, startCol);
+                                break;
+                            }
                         }
+                        rowContents.RemoveAt(0);
+                    }
+                    else
+                    {
+                        RemoveLetters(foundWord, checkRow, startCol);
+                        break;
                     }
                 }
             }
 
-            //Debug.Log("FUCH YOU!");
             MakeShape();
             movement = true;
         }
 
-        StartCoroutine(Gravity());
+        if (movement)
+        {
+            StartCoroutine(Gravity());
+        }
     }
 
     public List<char> GetRow(int row)
