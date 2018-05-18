@@ -25,7 +25,9 @@ public class GameManager : MonoBehaviour {
     public ParticleSystem yay;
 
     private int score;
-    public Text scoreText;
+    public Transform scorePlace;
+    public List<Sprite> numbers = new List<Sprite>();
+    private Transform[] scoreLine;
 
 	// Use this for initialization
 	void Start () {
@@ -43,6 +45,13 @@ public class GameManager : MonoBehaviour {
             rows[i] = Grid.GetChild(i);
         }
 
+        scoreLine = new Transform[6];
+        for (int i = 0; i < 6; i++)
+        {
+            //6 digits
+            scoreLine[i] = scorePlace.GetChild(5 - i); 
+        }
+
         StartCoroutine(Gravity());
         SetNextUp();
         SetRandomLetter();
@@ -51,7 +60,6 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
-        scoreText.text = score.ToString();
 
         //go left
         if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetButtonDown("xbox_x"))
@@ -458,10 +466,57 @@ public class GameManager : MonoBehaviour {
 
     void ClearWordEffects()
     {
-        //Debug.Log("POP");
         charAnim.HappyBoi();
         sound.ClearWord();
         score += 100;
+        UpdateScore();
+    }
+
+    public void UpdateScore()
+    {
+        int scoreDigits = score.ToString().Length;
+
+        foreach (char c in score.ToString())
+        {
+            
+            int targetIndex = (scoreLine.Length - scoreDigits);
+            
+            switch (c)
+            {
+                case '0':
+                    scoreLine[targetIndex].GetComponent<SpriteRenderer>().sprite = numbers[0];
+                    break;
+                case '1':
+                    scoreLine[targetIndex].GetComponent<SpriteRenderer>().sprite = numbers[1];
+                    break;
+                case '2':
+                    scoreLine[targetIndex].GetComponent<SpriteRenderer>().sprite = numbers[2];
+                    break;
+                case '3':
+                    scoreLine[targetIndex].GetComponent<SpriteRenderer>().sprite = numbers[3];
+                    break;
+                case '4':
+                    scoreLine[targetIndex].GetComponent<SpriteRenderer>().sprite = numbers[4];
+                    break;
+                case '5':
+                    scoreLine[targetIndex].GetComponent<SpriteRenderer>().sprite = numbers[5];
+                    break;
+                case '6':
+                    scoreLine[targetIndex].GetComponent<SpriteRenderer>().sprite = numbers[6];
+                    break;
+                case '7':
+                    scoreLine[targetIndex].GetComponent<SpriteRenderer>().sprite = numbers[7];
+                    break;
+                case '8':
+                    scoreLine[targetIndex].GetComponent<SpriteRenderer>().sprite = numbers[8];
+                    break;
+                case '9':
+                    scoreLine[targetIndex].GetComponent<SpriteRenderer>().sprite = numbers[9];
+                    break;
+            }
+            
+            scoreDigits--;
+        }
     }
 
     void SetNextUp()
