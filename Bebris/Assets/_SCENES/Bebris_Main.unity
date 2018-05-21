@@ -10871,8 +10871,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db5372b2ac3fbc7429c0b8007d3639bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music_a: {fileID: 8300000, guid: f4bb20fa3c744954182bbe5334e7fb45, type: 3}
-  music_b: {fileID: 8300000, guid: 7dd968828b03cc444b0b2a2ee80cbac5, type: 3}
+  music_a: {fileID: 8300000, guid: 5ec6dc0ef77db7c4eba4542b11f5542b, type: 3}
+  music_b: {fileID: 8300000, guid: 0997c6c88d48faa489ab8c03532af2bf, type: 3}
   oof: {fileID: 1543113468}
   pop: {fileID: 410488634}
   clap: {fileID: 1989115317}
