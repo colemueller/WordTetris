@@ -1,16 +1,19 @@
 WindowsStandalone
 SceneListBegin?
+Assets/_SCENES/title.unity
 Assets/_SCENES/Bebris_Main.unity
 SceneListEnd?
 05ebef1b1e2da831cb37e222f67bf4ac Assembly-CSharp.dll:.SoundManager
 c779bc9447d22061176af6624a5038a5 Assembly-CSharp.dll:.dictionaryReader
 322cb40e1e282f28af980cbef7922a90 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
+dd5481137759597d614818793c90a7fe Assembly-CSharp.dll:.bloop
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 b5ab147d6d8b4b80343427e41aba0af9 Assembly-CSharp.dll:.letter
-28c56681729b8663f2b8e79b2f3dbb8a Assembly-CSharp.dll:.charanim
-82e6c7320fd585ed7b291c69823a5d12 Assembly-CSharp.dll:.GameManager
+ca1ea0007aa620d46e7b33547a8ae6e1 Assembly-CSharp.dll:.buttons
+ed61d42de80ef62c008de5eb10fdbcd0 Assembly-CSharp.dll:.charanim
+dffb062942db907e3260558eccdf222a Assembly-CSharp.dll:.GameManager
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
