@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_SCENES/title.unity
+    guid: 8e5660a8c5974554a8b603fe9c5ef5dd
+  - enabled: 1
+    path: Assets/_SCENES/Bebris_Main.unity
+    guid: 7e5ef0c7e9f81b243bfa3011917b4fd5

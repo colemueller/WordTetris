@@ -22,10 +22,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 913, y: 442}
-  m_MaxSize: {x: 22008, y: 10021}
+  m_MinSize: {x: 917, y: 442}
+  m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 1699
+  controlID: 5139
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 1678
+  controlID: 5140
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -180,14 +180,14 @@ MonoBehaviour:
     height: 465
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 746.4828925056654
+  lastFramingTime: 122.2028118117476
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 3.2304344, y: -2.3060727, z: -0.0146484375}
+    m_Target: {x: 156.87856, y: 154.89203, z: -4.0873394}
     speed: 2
-    m_Value: {x: 3.2304344, y: -2.3060727, z: -0.0146484375}
+    m_Value: {x: 156.87856, y: 154.89203, z: -4.0873394}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -215,9 +215,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 5.4610763
+    m_Target: 642.20483
     speed: 2
-    m_Value: 5.4610763
+    m_Value: 642.20483
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -272,8 +272,8 @@ MonoBehaviour:
     y: 0
     width: 308
     height: 947
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -308,9 +308,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: bc410000
-    m_LastClickedID: 0
-    m_ExpandedIDs: 6298ffff9efbffff00000000
+    m_SelectedIDs: 9a550000
+    m_LastClickedID: 21914
+    m_ExpandedIDs: c2f7fbff2232fdff7034fdff72c9ffffb2ecffff7ef0fffffef9ffff00000000fc3500001c360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -397,19 +397,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Audio
+    - Assets/_SCENES
   m_ViewMode: 0
   m_StartGridSize: 64
-  m_LastFolders:
-  - Assets
+  m_LastFolders: []
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\Andre\Documents\_School\SeriousGames\seriousgames2018_cs348\WordTetris-master\Bebris
+  m_LastProjectPath: C:\Users\muell_000\Desktop\Serious\WordTetris\Bebris
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: fe290000
     m_LastClickedID: 10750
-    m_ExpandedIDs: 0000000068270000d6270000142800004c2800004e28000074280000ee2800001e2d0000
+    m_ExpandedIDs: 00000000502a0000d22a0000a42f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -434,10 +433,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 60}
-    m_SelectedIDs: bc410000
-    m_LastClickedID: 16828
-    m_ExpandedIDs: 0000000068270000d6270000142800004c2800004e28000074280000ee2800001e2d0000
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 9a550000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 00000000502a0000d22a0000a42f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -462,8 +461,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: bc410000
-    m_LastClickedInstanceID: 16828
+    m_SelectedInstanceIDs: 9a550000
+    m_LastClickedInstanceID: 21914
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:

@@ -28,10 +28,17 @@ public class GameManager : MonoBehaviour {
     public Transform scorePlace;
     public List<Sprite> numbers = new List<Sprite>();
     private Transform[] scoreLine;
+    public Image fadeImg;
+    private float fadeAlpha = 1;
+    private float refNum = 0.0f;
+    private bool DoStartFade = true;
+    private bool DoEndFade = false;
+    private float EndFadeAlpha = 0;
+    
 
 	// Use this for initialization
 	void Start () {
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         doEnd = true;
         EndScreen.SetActive(false);
 
@@ -52,14 +59,43 @@ public class GameManager : MonoBehaviour {
             scoreLine[i] = scorePlace.GetChild(5 - i); 
         }
 
-        StartCoroutine(Gravity());
-        SetNextUp();
-        SetRandomLetter();
-        SetNextUp();
+        //StartCoroutine(Gravity());
+        //SetNextUp();
+        //SetRandomLetter();
+        //SetNextUp();
 	}
 
     private void Update()
     {
+
+        if(DoStartFade)
+        {
+            
+            fadeAlpha = Mathf.SmoothDamp(fadeAlpha, 0, ref refNum, 0.5f);
+            fadeImg.color = new Color(0, 0, 0, fadeAlpha);
+
+            if (fadeAlpha < 0.1f)
+            {
+                StartCoroutine(Gravity());
+                SetNextUp();
+                SetRandomLetter();
+                SetNextUp();
+                DoStartFade = false;
+                fadeImg.gameObject.SetActive(false);
+            }
+        }
+
+        if (DoEndFade)
+        {
+            fadeImg.gameObject.SetActive(true);
+            EndFadeAlpha = Mathf.SmoothDamp(EndFadeAlpha, 1, ref refNum, 0.5f);
+            fadeImg.color = new Color(0, 0, 0, EndFadeAlpha);
+
+            if (EndFadeAlpha > 0.99f)
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
 
         //go left
         if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetButtonDown("xbox_x"))
@@ -75,16 +111,16 @@ public class GameManager : MonoBehaviour {
 
         
         //Speed up
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetButtonDown("xbox_a"))
-        {
-            IncreaseSpeed();
-        }
+        //if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetButtonDown("xbox_a"))
+        //{
+        //    IncreaseSpeed();
+        //}
 
         //Slow
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            DecreaseSpeed();
-        }
+        //if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    DecreaseSpeed();
+        //}
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -469,6 +505,10 @@ public class GameManager : MonoBehaviour {
         charAnim.HappyBoi();
         sound.ClearWord();
         score += 100;
+        if(gravSpeed != 0.1f)
+        {
+            gravSpeed -= 0.05f;
+        }
         UpdateScore();
     }
 
@@ -797,16 +837,24 @@ public class GameManager : MonoBehaviour {
 
     public void Restart()
     {
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
     public void EndGame()
     {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
+        StopAllCoroutines();
         sound.PlayOof();
         EndScreen.SetActive(true);
-        Debug.Log("Game Over, Man");
+        //Debug.Log("Game Over, Man");
         doEnd = false;
+        StartCoroutine(StartEndFade());
+    }
+
+    IEnumerator StartEndFade()
+    {
+        yield return new WaitForSeconds(1);
+        DoEndFade = true;
     }
 }
