@@ -458,7 +458,7 @@ public class GameManager : MonoBehaviour {
     public void RemoveColLetters(string vertWord, int col, int startRow)
     {
         List<char> charsInWord = new List<char>();
-        List<char> charsToDel = new List<char>();
+        //List<char> charsToDel = new List<char>();
 
         foreach (char c in vertWord)
         {
@@ -830,10 +830,10 @@ public class GameManager : MonoBehaviour {
         spot.GetComponent<letter>().Clear();
     }
 
-    public void delShapes()
-    {
+    //public void delShapes()
+    //{
         
-    }
+    //}
 
     public void Restart()
     {
