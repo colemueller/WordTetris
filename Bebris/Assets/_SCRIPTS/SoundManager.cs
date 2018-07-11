@@ -15,17 +15,17 @@ public class SoundManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         main_music = GetComponent<AudioSource>();
+        main_music.clip = music_b;
+        //int rand = Random.Range(1, 3);
 
-        int rand = Random.Range(1, 3);
-
-        if(rand == 1)
-        {
-            main_music.clip = music_a;
-        }
-        else
-        {
-            main_music.clip = music_b;
-        }
+        //if(rand == 1)
+        //{
+        //    main_music.clip = music_a;
+        //}
+        //else
+        //{
+        //    main_music.clip = music_b;
+        //}
         main_music.Play();
 	}
 	
